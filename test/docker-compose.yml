@@ -1,0 +1,17 @@
+services:
+    helloworld:
+        container_name: helloworld
+        image: crccheck/hello-world
+        ports:
+          - 8000:8000
+    nginx:
+        container_name: nginx
+        restart: unless-stopped
+        image: nginx
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - /home/ubuntu/letsencrypt/certbot/conf:/etc/letsencrypt
+            # config https
+            - ./nginx-https.conf:/etc/nginx/nginx.conf

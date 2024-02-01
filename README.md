@@ -5,13 +5,18 @@
 # Steps:
 - `cd ~`
 - `git clone https://github.com/anhttok/docker-letsencrypt.git ./letsencrypt`
+- `sudo docker compose up -d`
 - `sudo docker compose run --rm certbot certonly --webroot -w /var/www/certbot --force-renewal --email {email} -d {domain} --non-interactive --agree-tos`
-- ssl files:
-  ```
-  ssl_certificate     : ~/letsencrypt/certbot/conf/live/{domain}/fullchain.pem;
-  ssl_certificate_key : ~/letsencrypt/certbot/conf/live/{domain}/privkey.pem;
-  ```
-- 
+- `sudo docker compose down`
+
+# Test
+- `cd ~/letsencrypt/test`
+- `sudo docker compose up -d`
+- Stop after testing `sudo docker compose down`
+
 # Notes:
 - recreate the container: `sudo docker compose up -d nginx`
 - stop: `sudo docker compose down`
+
+# Todo:
+- Add script to auto renew
